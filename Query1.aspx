@@ -52,11 +52,11 @@
                 <asp:ControlParameter ControlID="DropDownList1" Name="employees" PropertyName="SelectedValue" />
             </SelectParameters>
         </asp:SqlDataSource>
-        SELECT AN EMPLOYEE<br />
+       <strong>SELECT AN EMPLOYEE</strong> <br />
         <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="EMPNAME" DataValueField="EMPID">
         </asp:DropDownList>
         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:CoursworkConnection %>" ProviderName="<%$ ConnectionStrings:CoursworkConnection.ProviderName %>" SelectCommand="SELECT * FROM &quot;EMPLOYEES&quot;"></asp:SqlDataSource>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="EMPID" DataSourceID="SqlDataSource1">
+        <asp:GridView ID="GridView1"  CssClass="table-bordered table table-striped" runat="server" AutoGenerateColumns="False" DataKeyNames="EMPID" DataSourceID="SqlDataSource1">
             <Columns>
                 <asp:BoundField DataField="EMPID" HeaderText="EMPID" ReadOnly="True" SortExpression="EMPID" />
                 <asp:BoundField DataField="EMPNAME" HeaderText="EMPNAME" SortExpression="EMPNAME" />

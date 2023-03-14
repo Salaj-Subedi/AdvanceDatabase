@@ -46,20 +46,21 @@
     </nav>
     <form id="form1" runat="server">
         <div>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:CoursworkConnection %>" ProviderName="<%$ ConnectionStrings:CoursworkConnection.ProviderName %>" SelectCommand="SELECT e.EMPID, e.EMPNAME, COUNT(*) AS num_votes_received FROM EMPLOYEES e, VOTES v WHERE e.EMPID = v.CANDIDATEID AND (v.VOTINGMONTH = :votes) GROUP BY e.EMPID, e.EMPNAME, v.VOTINGMONTH ORDER BY num_votes_received DESC">
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:CoursworkConnection %>" ProviderName="<%$ ConnectionStrings:CoursworkConnection.ProviderName %>" SelectCommand="SELECT e.EMPID AS &quot;Candidate Id&quot;, e.EMPNAME AS &quot;Candidate Name&quot;, v.VOTINGMONTH, COUNT(*) AS num_votes_received FROM EMPLOYEES e, VOTES v WHERE e.EMPID = v.CANDIDATEID AND (v.VOTINGMONTH = :votes) GROUP BY e.EMPID, e.EMPNAME, v.VOTINGMONTH ORDER BY num_votes_received DESC">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="DropDownList1" Name="votes" PropertyName="SelectedValue" />
                 </SelectParameters>
             </asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:CoursworkConnection %>" ProviderName="<%$ ConnectionStrings:CoursworkConnection.ProviderName %>" SelectCommand="SELECT VOTINGMONTH FROM VOTES GROUP BY VOTINGMONTH"></asp:SqlDataSource>
-            SELECT A MONTH<br />
+           <strong>SELECT A MONTH</strong> <br />
             <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="VOTINGMONTH" DataValueField="VOTINGMONTH">
             </asp:DropDownList>
         </div>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="EMPID" DataSourceID="SqlDataSource1">
+        <asp:GridView ID="GridView1" CssClass="table-bordered table table-striped" runat="server" AutoGenerateColumns="False" DataKeyNames="Candidate Id" DataSourceID="SqlDataSource1">
             <Columns>
-                <asp:BoundField DataField="EMPID" HeaderText="EMPID" ReadOnly="True" SortExpression="EMPID" />
-                <asp:BoundField DataField="EMPNAME" HeaderText="EMPNAME" SortExpression="EMPNAME" />
+                <asp:BoundField DataField="Candidate Id" HeaderText="Candidate Id" ReadOnly="True" SortExpression="Candidate Id" />
+                <asp:BoundField DataField="Candidate Name" HeaderText="Candidate Name" SortExpression="Candidate Name" />
+                <asp:BoundField DataField="VOTINGMONTH" HeaderText="VOTINGMONTH" SortExpression="VOTINGMONTH" />
                 <asp:BoundField DataField="NUM_VOTES_RECEIVED" HeaderText="NUM_VOTES_RECEIVED" SortExpression="NUM_VOTES_RECEIVED" />
             </Columns>
         </asp:GridView>

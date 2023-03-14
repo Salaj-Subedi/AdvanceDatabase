@@ -44,6 +44,7 @@
   </div>
 </div>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
     </nav>
+     &nbsp; &nbsp; &nbsp; &nbsp; <strong>DEPARTMENT DETAILS</strong><br />
     <form id="form1" runat="server">
         <div>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:CoursworkConnection %>" DeleteCommand="DELETE FROM &quot;DEPARTMENT&quot; WHERE &quot;DEPTID&quot; = :DEPTID" InsertCommand="INSERT INTO &quot;DEPARTMENT&quot; (&quot;DEPTID&quot;, &quot;DEPTNAME&quot;) VALUES (:DEPTID, :DEPTNAME)" ProviderName="<%$ ConnectionStrings:CoursworkConnection.ProviderName %>" SelectCommand="SELECT * FROM &quot;DEPARTMENT&quot;" UpdateCommand="UPDATE &quot;DEPARTMENT&quot; SET &quot;DEPTNAME&quot; = :DEPTNAME WHERE &quot;DEPTID&quot; = :DEPTID">
@@ -60,11 +61,12 @@
             </UpdateParameters>
         </asp:SqlDataSource>
             </div>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="DEPTID" DataSourceID="SqlDataSource1">
+        <asp:GridView ID="GridView1" CssClass="table-bordered table table-striped" runat="server" AutoGenerateColumns="False" DataKeyNames="DEPTID" DataSourceID="SqlDataSource1">
             <Columns>
-                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+                
                 <asp:BoundField DataField="DEPTID" HeaderText="DEPTID" ReadOnly="True" SortExpression="DEPTID" />
                 <asp:BoundField DataField="DEPTNAME" HeaderText="DEPTNAME" SortExpression="DEPTNAME" />
+                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
             </Columns>
         </asp:GridView>
         <asp:FormView ID="FormView1" runat="server" DataKeyNames="DEPTID" DataSourceID="SqlDataSource1">
@@ -89,7 +91,7 @@
                 &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
             </InsertItemTemplate>
             <ItemTemplate>
-              <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="Add New Department" />
+              <asp:LinkButton ID="NewButton" CssClass="btn btn-primary" runat="server" CausesValidation="False" CommandName="New" Text="Add New Department" />
             </ItemTemplate>
         </asp:FormView>
     </form>

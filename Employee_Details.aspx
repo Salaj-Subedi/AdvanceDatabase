@@ -44,6 +44,7 @@
   </div>
 </div>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
     </nav>
+     &nbsp; &nbsp; &nbsp; &nbsp; <strong>EMPLOYEE DETAILS</strong><br />
     <form id="form1" runat="server">
         <div>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:CoursworkConnection %>" DeleteCommand="DELETE FROM &quot;EMPLOYEES&quot; WHERE &quot;EMPID&quot; = :EMPID" InsertCommand="INSERT INTO &quot;EMPLOYEES&quot; (&quot;EMPID&quot;, &quot;EMPNAME&quot;, &quot;CONTACT&quot;, &quot;DEPTID&quot;, &quot;ROLEID&quot;, &quot;DOB&quot;) VALUES (:EMPID, :EMPNAME, :CONTACT, :DEPTID, :ROLEID, :DOB)" ProviderName="<%$ ConnectionStrings:CoursworkConnection.ProviderName %>" SelectCommand="SELECT * FROM &quot;EMPLOYEES&quot;" UpdateCommand="UPDATE &quot;EMPLOYEES&quot; SET &quot;EMPNAME&quot; = :EMPNAME, &quot;CONTACT&quot; = :CONTACT, &quot;DEPTID&quot; = :DEPTID, &quot;ROLEID&quot; = :ROLEID, &quot;DOB&quot; = :DOB WHERE &quot;EMPID&quot; = :EMPID">
@@ -68,15 +69,16 @@
             </UpdateParameters>
         </asp:SqlDataSource>
             </div>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="EMPID" DataSourceID="SqlDataSource1">
+        <asp:GridView ID="GridView1" CssClass="table-bordered table table-striped" runat="server" AutoGenerateColumns="False" DataKeyNames="EMPID" DataSourceID="SqlDataSource1">
             <Columns>
-                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+                
                 <asp:BoundField DataField="EMPID" HeaderText="EMPID" ReadOnly="True" SortExpression="EMPID" />
                 <asp:BoundField DataField="EMPNAME" HeaderText="EMPNAME" SortExpression="EMPNAME" />
                 <asp:BoundField DataField="CONTACT" HeaderText="CONTACT" SortExpression="CONTACT" />
                 <asp:BoundField DataField="DEPTID" HeaderText="DEPTID" SortExpression="DEPTID" />
                 <asp:BoundField DataField="ROLEID" HeaderText="ROLEID" SortExpression="ROLEID" />
                 <asp:BoundField DataField="DOB" HeaderText="DOB" SortExpression="DOB" />
+                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
             </Columns>
         </asp:GridView>
         <asp:FormView ID="FormView1" runat="server" DataKeyNames="EMPID" DataSourceID="SqlDataSource1">
@@ -129,7 +131,7 @@
                 &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
             </InsertItemTemplate>
             <ItemTemplate>
-          <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="Add New Employee" />
+          <asp:LinkButton ID="NewButton" CssClass="btn btn-primary" runat="server" CausesValidation="False" CommandName="New" Text="Add New Employee" />
             </ItemTemplate>
         </asp:FormView>
     </form>

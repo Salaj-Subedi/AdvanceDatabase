@@ -42,8 +42,9 @@
     <a class="dropdown-item" href="Query2.aspx">Employee Votes Q2</a>
     <a class="dropdown-item" href="Query3.aspx">Voting Record Q3</a>
   </div>
-</div>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
     </nav>
+       &nbsp; &nbsp; &nbsp; &nbsp; <strong>JOB DETAILS</strong><br />
     <form id="form1" runat="server">
         <div>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:CoursworkConnection %>" DeleteCommand="DELETE FROM &quot;JOB&quot; WHERE &quot;JOBID&quot; = :JOBID" InsertCommand="INSERT INTO &quot;JOB&quot; (&quot;JOBID&quot;, &quot;JOBNAME&quot;, &quot;SALARY&quot;) VALUES (:JOBID, :JOBNAME, :SALARY)" ProviderName="<%$ ConnectionStrings:CoursworkConnection.ProviderName %>" SelectCommand="SELECT * FROM &quot;JOB&quot;" UpdateCommand="UPDATE &quot;JOB&quot; SET &quot;JOBNAME&quot; = :JOBNAME, &quot;SALARY&quot; = :SALARY WHERE &quot;JOBID&quot; = :JOBID">
@@ -61,46 +62,47 @@
                     <asp:Parameter Name="JOBID" Type="String" />
                 </UpdateParameters>
             </asp:SqlDataSource>
+            <asp:GridView ID="GridView1" CssClass="table-bordered table table-striped" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+                <Columns>
+                   
+                    <asp:BoundField DataField="JOBID" HeaderText="JOBID" SortExpression="JOBID" />
+                    <asp:BoundField DataField="JOBNAME" HeaderText="JOBNAME" SortExpression="JOBNAME" />
+                    <asp:BoundField DataField="SALARY" HeaderText="SALARY" SortExpression="SALARY" />
+                     <asp:CommandField HeaderText="ACTIONS" ShowDeleteButton="True" ShowEditButton="True" />
+                </Columns>
+            </asp:GridView>
+            <asp:FormView ID="FormView1" runat="server" DataSourceID="SqlDataSource1">
+                <EditItemTemplate>
+                    JOBID:
+                    <asp:TextBox ID="JOBIDTextBox" runat="server" Text='<%# Bind("JOBID") %>' />
+                    <br />
+                    JOBNAME:
+                    <asp:TextBox ID="JOBNAMETextBox" runat="server" Text='<%# Bind("JOBNAME") %>' />
+                    <br />
+                    SALARY:
+                    <asp:TextBox ID="SALARYTextBox" runat="server" Text='<%# Bind("SALARY") %>' />
+                    <br />
+                    <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
+                    &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                </EditItemTemplate>
+                <InsertItemTemplate>
+                    JOBID:
+                    <asp:TextBox ID="JOBIDTextBox" runat="server" Text='<%# Bind("JOBID") %>' />
+                    <br />
+                    JOBNAME:
+                    <asp:TextBox ID="JOBNAMETextBox" runat="server" Text='<%# Bind("JOBNAME") %>' />
+                    <br />
+                    SALARY:
+                    <asp:TextBox ID="SALARYTextBox" runat="server" Text='<%# Bind("SALARY") %>' />
+                    <br />
+                    <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
+                    &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                </InsertItemTemplate>
+                <ItemTemplate>
+                  <asp:LinkButton ID="NewButton" CssClass="btn btn-primary" runat="server" CausesValidation="False" CommandName="New" Text="Add New Job" />
+                </ItemTemplate>
+            </asp:FormView>
         </div>
-        <asp:GridView ID="GridView1" CssClass="table-active" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
-            <Columns>
-                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-                <asp:BoundField DataField="JOBID" HeaderText="JOBID" SortExpression="JOBID" />
-                <asp:BoundField DataField="JOBNAME" HeaderText="JOBNAME" SortExpression="JOBNAME" />
-                <asp:BoundField DataField="SALARY" HeaderText="SALARY" SortExpression="SALARY" />
-            </Columns>
-        </asp:GridView>
-        <asp:FormView ID="FormView1" runat="server" DataSourceID="SqlDataSource1" OnPageIndexChanging="FormView1_PageIndexChanging">
-            <EditItemTemplate>
-                JOBID:
-                <asp:TextBox ID="JOBIDTextBox" runat="server" Text='<%# Bind("JOBID") %>' />
-                <br />
-                JOBNAME:
-                <asp:TextBox ID="JOBNAMETextBox" runat="server" Text='<%# Bind("JOBNAME") %>' />
-                <br />
-                SALARY:
-                <asp:TextBox ID="SALARYTextBox" runat="server" Text='<%# Bind("SALARY") %>' />
-                <br />
-                <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
-                &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
-            </EditItemTemplate>
-            <InsertItemTemplate>
-                JOBID:
-                <asp:TextBox ID="JOBIDTextBox" runat="server" Text='<%# Bind("JOBID") %>' />
-                <br />
-                JOBNAME:
-                <asp:TextBox ID="JOBNAMETextBox" runat="server" Text='<%# Bind("JOBNAME") %>' />
-                <br />
-                SALARY:
-                <asp:TextBox ID="SALARYTextBox" runat="server" Text='<%# Bind("SALARY") %>' />
-                <br />
-                <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
-                &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
-            </InsertItemTemplate>
-            <ItemTemplate>
-              <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="Add New Job" />
-            </ItemTemplate>
-        </asp:FormView>
     </form>
     <br /> <br /> <br /> <br />
     <footer class="site-footer">
@@ -108,7 +110,7 @@
         <div class="row">
 
           <div class="col-lg-5 mx-lg-auto col-md-8 col-10">
-            <h1 class="text-white"  ="100">SEN OFFICE IS PROUD PARTHERS FOR<br /> <strong> TOP COMPANIES</strong>.</h1>
+            <h1 class="text-white"  ="100">SEN OFFICE IS PROUD PARTHERS FOR FOR FOR<br /> <strong> TOP COMPANIES</strong>.</h1>
           </div>
 
           <div class="col-lg-3 col-md-6 col-12"  ="200">

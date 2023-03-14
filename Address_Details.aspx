@@ -44,7 +44,8 @@
   </div>
 </div>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
     </nav>
-    <form id="form1" runat="server">
+    &nbsp; &nbsp; &nbsp; &nbsp; <strADDRESS DETAILS</strong><br />
+    <form id="form1"  runat="server">
         <div>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:CoursworkConnection %>" DeleteCommand="DELETE FROM &quot;ADDRESS&quot; WHERE &quot;ADDRESSID&quot; = :ADDRESSID" InsertCommand="INSERT INTO &quot;ADDRESS&quot; (&quot;ADDRESSID&quot;, &quot;ADDRESS&quot;, &quot;DISTRICT&quot;) VALUES (:ADDRESSID, :ADDRESS, :DISTRICT)" ProviderName="<%$ ConnectionStrings:CoursworkConnection.ProviderName %>" SelectCommand="SELECT * FROM &quot;ADDRESS&quot;" UpdateCommand="UPDATE &quot;ADDRESS&quot; SET &quot;ADDRESS&quot; = :ADDRESS, &quot;DISTRICT&quot; = :DISTRICT WHERE &quot;ADDRESSID&quot; = :ADDRESSID">
             <DeleteParameters>
@@ -62,7 +63,7 @@
             </UpdateParameters>
         </asp:SqlDataSource>
             </div>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ADDRESSID" DataSourceID="SqlDataSource1">
+        <asp:GridView ID="GridView1" CssClass="table-bordered table table-striped" runat="server" AutoGenerateColumns="False" DataKeyNames="ADDRESSID" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
             <Columns>
                 
                 <asp:BoundField DataField="ADDRESSID" HeaderText="ADDRESSID" ReadOnly="True" SortExpression="ADDRESSID" />
@@ -99,7 +100,7 @@
                 &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
             </InsertItemTemplate>
             <ItemTemplate>
-              <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="Add New Address" />
+              <asp:LinkButton ID="NewButton" CssClass="btn btn-primary" runat="server" CausesValidation="False" CommandName="New" Text="Add New Address" />
             </ItemTemplate>
         </asp:FormView>
     </form>
@@ -109,7 +110,7 @@
         <div class="row">
 
           <div class="col-lg-5 mx-lg-auto col-md-8 col-10">
-            <h1 class="text-white"  ="100">SEN OFFICE IS PROUD PARTHERS FOR<br /> <strong> TOP COMPANIES</strong>.</h1>
+            <h1 class="text-white"  ="100">SEN OFFICE IS PROUD PARTHERS FOR FOR<br /> <strong> TOP COMPANIES</strong>.</h1>
           </div>
 
           <div class="col-lg-3 col-md-6 col-12"  ="200">

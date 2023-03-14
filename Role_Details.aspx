@@ -44,6 +44,7 @@
   </div>
 </div>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
     </nav>
+     &nbsp; &nbsp; &nbsp; &nbsp; <strong>ROLE DETAILS</strong><br />
     <form id="form1" runat="server">
         <div>
   <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:CoursworkConnection %>" DeleteCommand="DELETE FROM &quot;ROLE&quot; WHERE &quot;ROLEID&quot; = :ROLEID" InsertCommand="INSERT INTO &quot;ROLE&quot; (&quot;ROLEID&quot;, &quot;ROLENAME&quot;, &quot;ROLETYPE&quot;, &quot;JOBID&quot;) VALUES (:ROLEID, :ROLENAME, :ROLETYPE, :JOBID)" ProviderName="<%$ ConnectionStrings:CoursworkConnection.ProviderName %>" SelectCommand="SELECT * FROM &quot;ROLE&quot;" UpdateCommand="UPDATE &quot;ROLE&quot; SET &quot;ROLENAME&quot; = :ROLENAME, &quot;ROLETYPE&quot; = :ROLETYPE, &quot;JOBID&quot; = :JOBID WHERE &quot;ROLEID&quot; = :ROLEID">
@@ -64,13 +65,21 @@
             </UpdateParameters>
         </asp:SqlDataSource>
         </div>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ROLEID" DataSourceID="SqlDataSource1">
+        <asp:GridView ID="GridView1" CssClass="table-bordered table table-striped" runat="server" AutoGenerateColumns="False" DataKeyNames="ROLEID" DataSourceID="SqlDataSource1">
             <Columns>
-                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+               
                 <asp:BoundField DataField="ROLEID" HeaderText="ROLEID" ReadOnly="True" SortExpression="ROLEID" />
                 <asp:BoundField DataField="ROLENAME" HeaderText="ROLENAME" SortExpression="ROLENAME" />
                 <asp:BoundField DataField="ROLETYPE" HeaderText="ROLETYPE" SortExpression="ROLETYPE" />
                 <asp:BoundField DataField="JOBID" HeaderText="JOBID" SortExpression="JOBID" />
+                <asp:TemplateField HeaderText="Job Name">
+                    <ItemTemplate>
+                        <asp:DropDownList Enabled="false" ID="DropDownList2" runat="server" DataSourceID="jobtitledata" DataTextField="JOBNAME" DataValueField="JOBID" SelectedValue='<%# Bind("JOBID") %>'>
+                        </asp:DropDownList>
+                        <asp:SqlDataSource ID="jobtitledata" runat="server" ConnectionString="<%$ ConnectionStrings:CoursworkConnection %>" ProviderName="<%$ ConnectionStrings:CoursworkConnection.ProviderName %>" SelectCommand="SELECT &quot;JOBNAME&quot;, &quot;JOBID&quot; FROM &quot;JOB&quot;"></asp:SqlDataSource>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
             </Columns>
         </asp:GridView>
         <asp:FormView ID="FormView1" runat="server" DataKeyNames="ROLEID" DataSourceID="SqlDataSource1">
@@ -109,7 +118,7 @@
                 &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
             </InsertItemTemplate>
             <ItemTemplate>
-                <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="Add New Role" />
+                <asp:LinkButton ID="NewButton" CssClass="btn btn-primary" runat="server" CausesValidation="False" CommandName="New" Text="Add New Role" />
             </ItemTemplate>
         </asp:FormView>
     </form>
