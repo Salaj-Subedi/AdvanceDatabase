@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Address_Details.aspx" />
     <Content Include="CSS\style.css" />
+    <Content Include="Emp_detail.aspx" />
     <Content Include="Job_Details.aspx" />
     <Content Include="Query1.aspx" />
     <Content Include="Query2.aspx" />
@@ -108,6 +109,13 @@
     </Compile>
     <Compile Include="Address_Details.aspx.designer.cs">
       <DependentUpon>Address_Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Emp_detail.aspx.cs">
+      <DependentUpon>Emp_detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Emp_detail.aspx.designer.cs">
+      <DependentUpon>Emp_detail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Job_Details.aspx.cs">
       <DependentUpon>Job_Details.aspx</DependentUpon>

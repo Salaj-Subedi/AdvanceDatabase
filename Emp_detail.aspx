@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Role_Details.aspx.cs" Inherits="_20049007SalajSubedi.Role_Details" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Emp_detail.aspx.cs" Inherits="_20049007SalajSubedi.Emp_detail" %>
 
 <!DOCTYPE html>
 
@@ -44,82 +44,89 @@
   </div>
 </div>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
     </nav>
-     &nbsp; &nbsp; &nbsp; &nbsp; <strong>ROLE DETAILS</strong><br />
+     &nbsp; &nbsp; &nbsp; &nbsp; <strEMPLOYEE DETAILS</strong><br />
     <form id="form1" runat="server">
         <div>
-  <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:CoursworkConnection %>" DeleteCommand="DELETE FROM &quot;ROLE&quot; WHERE &quot;ROLEID&quot; = :ROLEID" InsertCommand="INSERT INTO &quot;ROLE&quot; (&quot;ROLEID&quot;, &quot;ROLENAME&quot;, &quot;ROLETYPE&quot;, &quot;JOBID&quot;) VALUES (:ROLEID, :ROLENAME, :ROLETYPE, :JOBID)" ProviderName="<%$ ConnectionStrings:CoursworkConnection.ProviderName %>" SelectCommand="SELECT * FROM &quot;ROLE&quot;" UpdateCommand="UPDATE &quot;ROLE&quot; SET &quot;ROLENAME&quot; = :ROLENAME, &quot;ROLETYPE&quot; = :ROLETYPE, &quot;JOBID&quot; = :JOBID WHERE &quot;ROLEID&quot; = :ROLEID">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:CoursworkConnection %>" DeleteCommand="DELETE FROM &quot;EMPLOYEES&quot; WHERE &quot;EMPID&quot; = :EMPID" InsertCommand="INSERT INTO &quot;EMPLOYEES&quot; (&quot;EMPID&quot;, &quot;EMPNAME&quot;, &quot;CONTACT&quot;, &quot;DEPTID&quot;, &quot;ROLEID&quot;, &quot;DOB&quot;) VALUES (:EMPID, :EMPNAME, :CONTACT, :DEPTID, :ROLEID, :DOB)" ProviderName="<%$ ConnectionStrings:CoursworkConnection.ProviderName %>" SelectCommand="SELECT * FROM &quot;EMPLOYEES&quot;" UpdateCommand="UPDATE &quot;EMPLOYEES&quot; SET &quot;EMPNAME&quot; = :EMPNAME, &quot;CONTACT&quot; = :CONTACT, &quot;DEPTID&quot; = :DEPTID, &quot;ROLEID&quot; = :ROLEID, &quot;DOB&quot; = :DOB WHERE &quot;EMPID&quot; = :EMPID">
             <DeleteParameters>
-                <asp:Parameter Name="ROLEID" Type="String" />
+                <asp:Parameter Name="EMPID" Type="String" />
             </DeleteParameters>
             <InsertParameters>
+                <asp:Parameter Name="EMPID" Type="String" />
+                <asp:Parameter Name="EMPNAME" Type="String" />
+                <asp:Parameter Name="CONTACT" Type="Decimal" />
+                <asp:Parameter Name="DEPTID" Type="String" />
                 <asp:Parameter Name="ROLEID" Type="String" />
-                <asp:Parameter Name="ROLENAME" Type="String" />
-                <asp:Parameter Name="ROLETYPE" Type="String" />
-                <asp:Parameter Name="JOBID" Type="String" />
+                <asp:Parameter Name="DOB" Type="DateTime" />
             </InsertParameters>
             <UpdateParameters>
-                <asp:Parameter Name="ROLENAME" Type="String" />
-                <asp:Parameter Name="ROLETYPE" Type="String" />
-                <asp:Parameter Name="JOBID" Type="String" />
+                <asp:Parameter Name="EMPNAME" Type="String" />
+                <asp:Parameter Name="CONTACT" Type="Decimal" />
+                <asp:Parameter Name="DEPTID" Type="String" />
                 <asp:Parameter Name="ROLEID" Type="String" />
+                <asp:Parameter Name="DOB" Type="DateTime" />
+                <asp:Parameter Name="EMPID" Type="String" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        </div>
-        <asp:GridView ID="GridView1" CssClass="table-bordered table table-striped" runat="server" AutoGenerateColumns="False" DataKeyNames="ROLEID" DataSourceID="SqlDataSource1">
+            </div>
+        <asp:GridView ID="GridView1" CssClass="table-bordered table table-striped" runat="server" AutoGenerateColumns="False" DataKeyNames="EMPID" DataSourceID="SqlDataSource1">
             <Columns>
-               
-                <asp:BoundField DataField="ROLEID" HeaderText="ROLEID" ReadOnly="True" SortExpression="ROLEID" />
-                <asp:BoundField DataField="ROLENAME" HeaderText="ROLENAME" SortExpression="ROLENAME" />
-                <asp:BoundField DataField="ROLETYPE" HeaderText="ROLETYPE" SortExpression="ROLETYPE" />
-                <asp:BoundField DataField="JOBID" HeaderText="JOBID" SortExpression="JOBID" />
-                <asp:TemplateField HeaderText="Job Name">
-                    <ItemTemplate>
-                        <asp:DropDownList Enabled="false" ID="DropDownList2" runat="server" DataSourceID="jobtitledata" DataTextField="JOBNAME" 
-                            DataValueField="JOBID" SelectedValue='<%# Bind("JOBID") %>'>
-                        </asp:DropDownList>
-                        <asp:SqlDataSource ID="jobtitledata" runat="server" ConnectionString="<%$ ConnectionStrings:CoursworkConnection %>" ProviderName="<%$ ConnectionStrings:CoursworkConnection.ProviderName %>" SelectCommand="SELECT &quot;JOBNAME&quot;, &quot;JOBID&quot; FROM &quot;JOB&quot;"></asp:SqlDataSource>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+                
+                <asp:BoundField DataField="EMPID" HeaderText="EMPID" ReadOnly="True" SortExpression="EMPID" />
+                <asp:BoundField DataField="EMPNAME" HeaderText="EMPNAME" SortExpression="EMPNAME" />
+                <asp:BoundField DataField="CONTACT" HeaderText="CONTACT" SortExpression="CONTACT" />
+                <asp:BoundField DataField="DEPTID" HeaderText="DEPTID" SortExpression="DEPTID" />
+                <asp:BoundField DataField="ROLEID" HeaderText="ROLEID" SortExpression="ROLEID" />
+                <asp:BoundField DataField="DOB" HeaderText="DOB" SortExpression="DOB" />
             </Columns>
         </asp:GridView>
-        <asp:FormView ID="FormView1" runat="server" DataKeyNames="ROLEID" DataSourceID="SqlDataSource1">
+        <asp:FormView ID="FormView1" runat="server" DataKeyNames="EMPID" DataSourceID="SqlDataSource1">
             <EditItemTemplate>
+                EMPID:
+                <asp:Label ID="EMPIDLabel1" runat="server" Text='<%# Eval("EMPID") %>' />
+                <br />
+                EMPNAME:
+                <asp:TextBox ID="EMPNAMETextBox" runat="server" Text='<%# Bind("EMPNAME") %>' />
+                <br />
+                CONTACT:
+                <asp:TextBox ID="CONTACTTextBox" runat="server" Text='<%# Bind("CONTACT") %>' />
+                <br />
+                DEPTID:
+                <asp:TextBox ID="DEPTIDTextBox" runat="server" Text='<%# Bind("DEPTID") %>' />
+                <br />
                 ROLEID:
-                <asp:Label ID="ROLEIDLabel1" runat="server" Text='<%# Eval("ROLEID") %>' />
+                <asp:TextBox ID="ROLEIDTextBox" runat="server" Text='<%# Bind("ROLEID") %>' />
                 <br />
-                ROLENAME:
-                <asp:TextBox ID="ROLENAMETextBox" runat="server" Text='<%# Bind("ROLENAME") %>' />
-                <br />
-                ROLETYPE:
-                <asp:TextBox ID="ROLETYPETextBox" runat="server" Text='<%# Bind("ROLETYPE") %>' />
-                <br />
-                JOBID:
-                <asp:TextBox ID="JOBIDTextBox" runat="server" Text='<%# Bind("JOBID") %>' />
+                DOB:
+                <asp:TextBox ID="DOBTextBox" runat="server" Text='<%# Bind("DOB") %>' />
                 <br />
                 <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
                 &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
             </EditItemTemplate>
             <InsertItemTemplate>
-                ROLEID:
-                <asp:TextBox ID="ROLEIDTextBox" runat="server" Text='<%# Bind("ROLEID") %>' />
+                EMPID:
+                <asp:TextBox ID="EMPIDTextBox" runat="server" Text='<%# Bind("EMPID") %>' />
                 <br />
-                ROLENAME:
-                <asp:TextBox ID="ROLENAMETextBox" runat="server" Text='<%# Bind("ROLENAME") %>' />
+                EMPNAME:
+                <asp:TextBox ID="EMPNAMETextBox" runat="server" Text='<%# Bind("EMPNAME") %>' />
                 <br />
-                ROLETYPE:
-                <asp:TextBox ID="ROLETYPETextBox" runat="server" Text='<%# Bind("ROLETYPE") %>' />
+                CONTACT:
+                <asp:TextBox ID="CONTACTTextBox" runat="server" Text='<%# Bind("CONTACT") %>' />
                 <br />
-                JOB:
-                <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="JOBNAME" DataValueField="JOBID" SelectedValue='<%# Bind("JOBID") %>'>
-                </asp:DropDownList>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:CoursworkConnection %>" ProviderName="<%$ ConnectionStrings:CoursworkConnection.ProviderName %>" SelectCommand="SELECT &quot;JOBID&quot;, &quot;JOBNAME&quot; FROM &quot;JOB&quot;"></asp:SqlDataSource>
+                DEPARTMENT:
+                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("DEPTID") %>'></asp:TextBox>
+                <br />
+                ROLE:
+                <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("ROLEID") %>'></asp:TextBox>
+                <br />
+                DOB:
+                <asp:TextBox ID="DOBTextBox" runat="server" Text='<%# Bind("DOB") %>' />
                 <br />
                 <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
                 &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
             </InsertItemTemplate>
             <ItemTemplate>
-                <asp:LinkButton ID="NewButton" CssClass="btn btn-primary" runat="server" CausesValidation="False" CommandName="New" Text="Add New Role" />
+          <asp:LinkButton ID="NewButton" CssClass="btn btn-primary" runat="server" CausesValidation="False" CommandName="New" Text="Add New Employee" />
             </ItemTemplate>
         </asp:FormView>
     </form>
@@ -129,7 +136,7 @@
         <div class="row">
 
           <div class="col-lg-5 mx-lg-auto col-md-8 col-10">
-            <h1 class="text-white"  ="100">SEN OFFICE IS PROUD PARTHERS FOR<br /> <strong> TOP COMPANIES</strong>.</h1>
+            <h1 class="text-white"  ="100">SEN OFFICE IS PROUD PARTHERS FOR FOR<br /> <strong> TOP COMPANIES</strong>.</h1>
           </div>
 
           <div class="col-lg-3 col-md-6 col-12"  ="200">
